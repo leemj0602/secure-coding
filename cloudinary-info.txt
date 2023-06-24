@@ -1,0 +1,3 @@
+cloud name: dkxx1urjz
+API key: 671559141826785
+API secret: 5mcpPbtBr9uJWDUFkClxxXAm2nI
