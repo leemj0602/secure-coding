@@ -23,7 +23,7 @@ exports.processLogin = (req, res, next) => {
                 //Rewards such as sabotage (seriously damage the data in database), 
                 //data theft (grab and sell). 
                 console.log(message);
-                return res.status(500).json({ message: error });
+                return res.status(500).json({ message: message });
 
             } else {
                 if (results.length == 1) {
@@ -45,7 +45,7 @@ exports.processLogin = (req, res, next) => {
                     } else {
                         // return res.status(500).json({ message: 'Login has failed.' });
                         console.log('error logging in with email: ' + email + ' because password is wrong');
-                        return res.status(500).json({ message: error });
+                        return res.status(500).json({ message: 'wrong password' });
                     } //End of passowrd comparison with the retrieved decoded password.
                 } //End of checking if there are returned SQL results
 
@@ -54,7 +54,7 @@ exports.processLogin = (req, res, next) => {
         })
 
     } catch (error) {
-        return res.status(500).json({ message: error });
+        return res.status(500).json({ message: 'login failed' });
     } //end of try
 
 
@@ -67,6 +67,15 @@ exports.processRegister = (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
 
+    const reg1 = /<script>/;
+    const reg2 = /<\/script>/
+
+    var rFullName = fullName.replace(reg1, "");
+    rFullName = rFullName.replace(reg2, "");
+
+    var rEmail = email.replace(reg1, "");
+    rEmail = rEmail.replace(reg2, "");
+
 
     bcrypt.hash(password, 10, async(err, hash) => {
         if (err) {
@@ -74,7 +83,7 @@ exports.processRegister = (req, res, next) => {
             return res.status(500).json({ statusMessage: 'Unable to complete registration' });
         } else {
             
-                results = user.createUser(fullName, email, hash, function(results, error){
+                results = user.createUser(rFullName, rEmail, hash, function(results, error){
                   if (results!=null){
                     console.log(results);
                     return res.status(200).json({ statusMessage: 'Completed registration.' });

@@ -68,7 +68,7 @@ exports.processGetSubmissionData = async (req, res, next) => {
     } catch (error) {
         let message = 'Server is unable to process your request.';
         return res.status(500).json({
-            message: error
+            message: message
         });
     }
 
@@ -99,7 +99,7 @@ exports.processGetSubmissionsbyEmail = async (req, res, next) => {
     } catch (error) {
         let message = 'Server is unable to process your request.';
         return res.status(500).json({
-            message: error
+            message: message
         });
     }
 
@@ -124,7 +124,7 @@ exports.processGetUserData = async (req, res, next) => {
     } catch (error) {
         let message = 'Server is unable to process your request.';
         return res.status(500).json({
-            message: error
+            message: message
         });
     }
 
@@ -145,7 +145,7 @@ exports.processGetOneUserData = async (req, res, next) => {
     } catch (error) {
         let message = 'Server is unable to process your request.';
         return res.status(500).json({
-            message: error
+            message: message
         });
     }
 
@@ -176,7 +176,7 @@ exports.processGetOneDesignData = async (req, res, next) => {
 
     try {
         let results = await userManager.getOneDesignData(recordId);
-        console.log('Inspect result variable inside processGetOneFileData code\n', results);
+        console.log('Inspect result variable inside processGetOneDesignData code\n', results);
         if (results) {
             var jsonResult = {
                 'filedata': results[0],
@@ -186,7 +186,7 @@ exports.processGetOneDesignData = async (req, res, next) => {
     } catch (error) {
         let message = 'Server is unable to process the request.';
         return res.status(500).json({
-            message: error
+            message: message
         });
     }
 
@@ -228,7 +228,7 @@ exports.processSendInvitation = async (req, res, next) => {
 
 
 exports.processUpdateOneDesign = async (req, res, next) => {
-    console.log('processUpdateOneFile running');
+    console.log('processUpdateOneDesign running');
     //Collect data from the request body 
     let fileId = req.body.fileId;
     let designTitle = req.body.designTitle;
