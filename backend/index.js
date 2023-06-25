@@ -6,11 +6,13 @@ const fs = require("fs");
 const https = require("https");
 const key = fs.readFileSync("localhost-key.pem", "utf-8");
 const cert = fs.readFileSync("localhost.pem", "utf-8");
+const pino = require('express-pino-logger')();
 //const dummyUserFn = require('./src/middlewares/dummyUserFn');
 
 let app = express();
 app.use('*', cors());
 
+app.use(pino);
 
 //Server Settings
 const PORT = 5000;

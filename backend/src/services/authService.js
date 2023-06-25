@@ -1,7 +1,7 @@
 config = require('../config/config');
 const pool = require('../config/database')
 module.exports.authenticate = (email, callback) => {
-    console.log('authenticate method is called')
+    console.log('authenticate method is called');
     pool.getConnection((err, connection) => {
         if (err) {
             if (err) throw err;

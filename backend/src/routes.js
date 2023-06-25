@@ -12,7 +12,7 @@ exports.appRoute = router => {
     router.post('/api/user/login', authController.processLogin); //login
     router.post('/api/user/register', authController.processRegister); //register
     router.post('/api/user/process-submission', checkUserFn.getClientUserId, userController.processDesignSubmission); //submit design
-    router.put('/api/user/', verify.verifyToken, verify.verifyRole, userController.processUpdateOneUser); //update user
+    router.put('/api/user/', verify.verifyToken, verify.verifyRole, userController.processUpdateOneUser); //admin update user
     router.put('/api/user/design/', userController.processUpdateOneDesign); //update design
     router.post('/api/user/processInvitation/', checkUserFn.getClientUserId, userController.processSendInvitation); //invite friend
 

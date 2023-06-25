@@ -235,7 +235,7 @@ exports.processUpdateOneDesign = async (req, res, next) => {
     let designDescription = req.body.designDescription;
 
     const reg1 = /<script>/;
-    const reg2 = /<\/script>/
+    const reg2 = /<\/script>/;
 
     var rDesignTitle = designTitle.replace(reg1, "");
     rDesignTitle = rDesignTitle.replace(reg2, "");
